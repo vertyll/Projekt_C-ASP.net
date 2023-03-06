@@ -1,0 +1,32 @@
+﻿@using System.Globalization
+@using Ciuchex.Models.ViewModels
+@model SmallCartViewModel
+
+@if (Model != null)
+{
+    <div class="btn-group dropstart">
+        <button type="button" class="btn btn-outline-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-cart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                @Model.NumberOfItems
+                <span class="visually-hidden">unread messages</span>
+            </span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><p class="dropdown-item-text">Total: <b>@Model.TotalAmount.ToString("C",CultureInfo.CreateSpecificCulture("en-US"))</b></p></li>
+            <li><a class="dropdown-item" asp-controller="Cart" asp-action="Index">View cart</a></li>
+            <li><a class="dropdown-item" asp-controller="Cart" asp-action="Clear" >Clear cart</a></li>
+        </ul>
+    </div>
+}
+else
+{
+    <div class="btn-group dropstart">
+        <button type="button" class="btn btn-outline-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-cart"></i>
+        </button>
+        <ul class="dropdown-menu">
+            <li><p class="dropdown-item-text">Your cart is <b>empty!</b></p></li>
+        </ul>
+    </div>
+}

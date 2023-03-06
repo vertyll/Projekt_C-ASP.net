@@ -1,0 +1,62 @@
+﻿@using System.Globalization
+@model IEnumerable<Ciuchex.Models.Order>
+
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<div class="text-center">
+    <h1 class="display-4 m-4">My Orders</h1>
+
+    <div class="row">
+        @if (Model.Count() > 0)
+        {
+            <div class="col-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">@Html.DisplayNameFor(model => model.OrderNumber)</th>
+                            <th scope="col">@Html.DisplayNameFor(model => model.OrderDate)</th>
+                            <th scope="col">Products</th>
+                            <th scope="col">@Html.DisplayNameFor(model => model.Total)</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="align-middle">@Html.DisplayFor(modelItem => item.OrderNumber)</td>
+                                <td class="align-middle">@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                                <td class="align-middle">
+                                    @foreach (var cartItem in item.CartItems)
+                                    {
+                                        @Html.DisplayFor(cartItemModel => cartItem.ProductName)
+                                        @: -
+                                        @Html.DisplayFor(cartItemModel => cartItem.Price)
+                                        @: *
+                                        @Html.DisplayFor(cartItemModel => cartItem.Quantity)
+                                        ;
+                                        <br />
+                                    }
+                                </td>
+                                <td class="align-middle">@Html.DisplayFor(modelItem => item.Total) $</td>
+                                <td class="align-middle">Status</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        }
+        else
+        {
+            <div class="col-12">
+                <p class="text-center">
+                    You don't have any orders <b>yet!</b>
+                </p>
+            </div>
+        }
+
+    </div>
+</div>

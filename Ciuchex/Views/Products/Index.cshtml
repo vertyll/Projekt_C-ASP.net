@@ -1,0 +1,29 @@
+﻿@using System.Globalization
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="text-center">
+    <h1 class="display-4 m-4">Products</h1>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 col-sm-6">
+                <img src="/media/products/@item.Image" class="img-fluid rounded-3 mb-3" alt="@item.Name Photo"/>
+                <h4>@item.Name</h4>
+                @*<div>
+                    <p class="text-justify m-3">@item.Description</p>
+                </div>*@
+                <p>
+                    @item.Price.ToString("C",CultureInfo.CreateSpecificCulture("en-US"))
+                </p>
+                <p>
+                    <a class="btn btn-outline-secondary btn-sm" asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id">Add to cart <i class="bi bi-cart-plus"></i></a>
+                </p>
+            </div>
+        }
+
+    </div>
+</div>
