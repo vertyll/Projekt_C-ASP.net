@@ -1,4 +1,4 @@
-# Shop_ASP.NET Core
+# ProjektASP.NET Core
 
 A simple shop made with ASP.NET Core 7.0 and bootstrap
 ## Screenshots
